@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413135456) do
+ActiveRecord::Schema.define(version: 20140413155620) do
+
+  create_table "cards", force: true do |t|
+    t.integer  "cardset_id"
+    t.integer  "number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards", ["cardset_id", "number"], name: "index_cards_on_cardset_id_and_number", unique: true
+
+  create_table "cardsets", force: true do |t|
+    t.string   "identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cardsets", ["identifier"], name: "index_cardsets_on_identifier", unique: true
+
+  create_table "user_cards", force: true do |t|
+    t.integer  "card_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_cards", ["card_id"], name: "index_user_cards_on_card_id"
+  add_index "user_cards", ["user_id"], name: "index_user_cards_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                              default: "", null: false
