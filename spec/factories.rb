@@ -7,4 +7,9 @@ FactoryGirl.define do
   factory :cardset do
     sequence(:identifier) {|n| "cardset_#{n}".to_sym }
   end
+  factory :card do
+  end
+  factory :user_card do
+    card
+  end
 end
