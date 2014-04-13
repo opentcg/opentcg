@@ -30,5 +30,13 @@ shared_examples "collector" do
       collector.cardset_masters.size.should == 0
     end
 
+    it "should just remove a card once" do
+      collector.user_cards.create(card: collection.cards.first)
+      collector.user_cards.create(card: collection.cards[1])
+      collector.user_cards.create(card: collection.cards[1])
+      collector.user_cards.size.should == 1
+      collector.cardset_masters.size.should == 1
+    end
+
   end
 end

@@ -11,13 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413165307) do
+ActiveRecord::Schema.define(version: 20140413173411) do
 
   create_table "cards", force: true do |t|
     t.integer  "cardset_id"
     t.integer  "number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "cards", ["cardset_id", "number"], name: "index_cards_on_cardset_id_and_number", unique: true
@@ -35,6 +39,10 @@ ActiveRecord::Schema.define(version: 20140413165307) do
     t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "master_card_file_name"
+    t.string   "master_card_content_type"
+    t.integer  "master_card_file_size"
+    t.datetime "master_card_updated_at"
   end
 
   add_index "cardsets", ["identifier"], name: "index_cardsets_on_identifier", unique: true
