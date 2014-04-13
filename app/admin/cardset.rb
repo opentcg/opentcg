@@ -1,6 +1,6 @@
 ActiveAdmin.register Cardset do
 
-  permit_params :identifier, :master_card, cards_attributes: [:image]
+  permit_params :identifier, :master_card, cards_attributes: [:image, :id]
 
   index do
     selectable_column
@@ -29,7 +29,7 @@ ActiveAdmin.register Cardset do
       f.input   :master_card, :hint => f.template.image_tag(f.object.master_card.url)
     end
     f.inputs do
-      f.has_many :cards, heading: 'Cards', new_record: 'Add Card', :multipart => true do |c|
+      f.has_many :cards, heading: 'Cards', new_record: 'Add Card', :multipart => true, allow_destroy: true do |c|
         c.input   :image, :hint => c.template.image_tag(c.object.image.url)
       end
     end
